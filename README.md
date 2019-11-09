@@ -17,9 +17,10 @@ Models
   * Stock
   * Roles
   * Areas 
-  * Purchases
+  * OrderItems
   * TODO: Define next models to be used
 
+[Models](https://app.sqldbm.com/PostgreSQL/Share/Mh7vbDDSIZRJvCgKvRJ0-UGFrngIE8md_DYjF4jNYw0)
 
 # python_system
 Create and use Django Framework to build up a store from 0 or using libraries
