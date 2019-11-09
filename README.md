@@ -7,7 +7,7 @@ This project is based on a diagram made in class and my choice was a Shop system
 
 The shop will be base on this module at first glance and it will be modified:
 
-![alt text](https://drive.google.com/open?id=1Hd7CK6-ECtQGTks6K1F8NTuYsUobYb4Z)
+[Diagram of project](https://drive.google.com/file/d/1Hd7CK6-ECtQGTks6K1F8NTuYsUobYb4Z)
 
 
 # python_system
