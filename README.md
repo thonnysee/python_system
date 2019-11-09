@@ -10,6 +10,16 @@ The shop will be base on this module at first glance and it will be modified:
 [Diagram of project](https://drive.google.com/file/d/1Hd7CK6-ECtQGTks6K1F8NTuYsUobYb4Z)
 
 
+Models
+  * Users
+  * Products
+  * Orders
+  * Stock
+  * Roles
+  * Areas 
+  * TODO: Define next models to be used
+
+
 # python_system
 Create and use Django Framework to build up a store from 0 or using libraries
 
