@@ -17,6 +17,7 @@ Models
   * Stock
   * Roles
   * Areas 
+  * Purchases
   * TODO: Define next models to be used
 
 
