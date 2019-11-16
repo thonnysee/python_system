@@ -1,14 +1,16 @@
 {% extends 'layouts/base_layout.html' %} 
+{% load static %}
+{% block header %} Python Project Shop {% endblock %}
 {% block body %}
     <!-- Start Bradcaump area -->
-    <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
+    <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url('{% static 'images/slider/buen-fin-blog-1.jpg' %}') no-repeat scroll center center / cover ;">
         <div class="ht__bradcaump__wrap">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="bradcaump__inner">
                             <nav class="bradcaump-inner">
-                                <a class="breadcrumb-item" href="index.html">Home</a>
+                                <a class="breadcrumb-item" href="{% url 'home' %}">Home</a>
                                 <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
                                 <span class="breadcrumb-item active">Products</span>
                             </nav>

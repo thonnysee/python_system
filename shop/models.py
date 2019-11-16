@@ -13,6 +13,10 @@ class Category(ParanoidModel):
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, default="")
     
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+        
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
@@ -35,6 +39,7 @@ class Product(ParanoidModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     url = models.URLField(max_length=200,default="https://aliceasmartialarts.com/wp-content/uploads/2017/04/default-image.jpg")
     is_active = models.BooleanField(default=True) 
+        
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Product, self).save(*args, **kwargs)
