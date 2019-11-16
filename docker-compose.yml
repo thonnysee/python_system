@@ -2,14 +2,17 @@ version: '3'
 
 services:
   db:
-    restart: always
     image: postgres:latest
+    environment:
+      POSTGRES_DB: db_platform
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_password
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data/
+      - ./postgres-data:/var/lib/postgresql/data
+    command: postgres -c listen_addresses='*'
   web:
-    restart: always
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -17,6 +20,14 @@ services:
     ports:
       - "8000:8000"
     depends_on:
+      - migration
+  migration:
+    build: .
+    image: app
+    command: bash -c "python manage.py makemigrations --noinput && python manage.py migrate --noinput"
+    volumes:
+      - .:/code
+    links:
       - db
-volumes:
-  pgdata:
+    depends_on:
+      - db
