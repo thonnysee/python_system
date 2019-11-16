@@ -22,7 +22,7 @@ Models
 
 [Models Diagram](https://app.sqldbm.com/PostgreSQL/Share/Mh7vbDDSIZRJvCgKvRJ0-UGFrngIE8md_DYjF4jNYw0)
 
-# Python Shop setup
+# Django Setup
 
 **Setting Up Containers for Django Project**
 
@@ -40,7 +40,54 @@ Models
 **Helpfull Commands**
 1. Create migrations for a specific app: `>docker-compose run migration python manage.py makemigrations <APP_NAME>`
 
+# Python Shop Setup 
 
+1. Build Docker Image: `>docker-compose build`
+1. Run Dokcer DB First to avoid problems with Django Web app running first: `>docker-compose up -d db`
+1. Run Docker Migrations if they exist: `>docker-compose build migration`
+1. Run Docker Web app: `>docker-compose up -d web`
+1. Otherwise you could just run: `>docker-compose up` or `>docker-compose up -d`
+1. Change Settings file on the main project:
+
+```
+
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+ALLOWED_HOSTS = [
+    '*'
+]
+
+```
+
+1. Edit DATABASES and TEMPLATES like the next code:
+
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATE_DIR,],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'db_password',
+        'HOST': 'db', 
+        'PORT': 5432,
+    }
+} 
+```
 
 ## Version
 0.2
