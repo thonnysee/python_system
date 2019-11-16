@@ -49,45 +49,43 @@ Models
 1. Otherwise you could just run: `>docker-compose up` or `>docker-compose up -d`
 1. Change Settings file on the main project:
 
-```
+    ```
+    TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+    ```
 
-TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-ALLOWED_HOSTS = [
-    '*'
-]
+1. Edit ALLOWED_HOSTS, DATABASES and TEMPLATES like the next code:
 
-```
-
-1. Edit DATABASES and TEMPLATES like the next code:
-
-```
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+    ```
+    ALLOWED_HOSTS = [
+        '*'
+    ]
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [TEMPLATE_DIR,],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
         },
-    },
-]
+    ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'db_password',
-        'HOST': 'db', 
-        'PORT': 5432,
-    }
-} 
-```
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'db_password',
+            'HOST': 'db', 
+            'PORT': 5432,
+        }
+    } 
+    ```
 
 ## Version
 0.2
