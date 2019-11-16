@@ -57,12 +57,12 @@
                             <div class="shop__grid__view__wrap">
                                 <div role="tabpanel" id="grid-view" class="single-grid-view tab-pane fade in active clearfix">
                                     <!-- Start Single Product -->
-                                    {% for product in products %}
+                                    {% for prod in products %}
                                         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                                             <div class="category">
                                                 <div class="ht__cat__thumb">
                                                     <a href="product-details.html">
-                                                        <img src="{{product.url}}" alt="product images">
+                                                        <img src="{{prod.url}}" alt="product images">
                                                     </a>
                                                 </div>
                                                 <div class="fr__hover__info">
@@ -75,10 +75,10 @@
                                                     </ul>
                                                 </div>
                                                 <div class="fr__product__inner">
-                                                    <h4><a href="product-details.html">{{product.name}}</a></h4>
+                                                    <h4><a href="product-details.html">{{prod.name}}</a></h4>
                                                     <ul class="fr__pro__prize">
-                                                        <li class="old__prize">${{product.price|floatformat:2}}</li>
-                                                        <li>${{product.price|floatformat:2}}</li>
+                                                        <li class="old__prize">${{prod.price|floatformat:2}}</li>
+                                                        <li>${{prod.price|floatformat:2}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
