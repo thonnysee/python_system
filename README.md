@@ -86,7 +86,12 @@ Models
         }
     } 
     ```
-
+1. Next Server should be running on local on port 8000:
+    ```
+    0.0.0.0:8000
+    127.0.0.1:8000
+    localhost:8000
+    
 ## Version
 0.2
 ## Credits
