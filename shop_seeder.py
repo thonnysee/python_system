@@ -16,7 +16,8 @@ from django.template.defaultfilters import slugify
 import requests
 
 fake = Faker()
-json = requests.get('https://picsum.photos/v2/list').json()
+
+json = requests.get('https://api-codigos-postales.herokuapp.com/v2/codigo_postal/'+codigo_postal).json()
 def products_seeder(times=5):
     """ 
     Populate the model Product with fake data 
@@ -61,4 +62,3 @@ def products_seeder(times=5):
 if __name__ == "__main__":
     products_seeder(30)
         
-

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_paranoid',
     'shop',
+    'django.contrib.admindocs',
 ]
 
 MIDDLEWARE = [

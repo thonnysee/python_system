@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 class PythonShopAdminSite(AdminSite):
+    """Override Admin for manual shop management"""
     site_header = 'Python Shop Administration'
     index_title = 'Python Shop'
     site_title = 'Administration'
