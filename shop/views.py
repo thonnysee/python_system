@@ -7,6 +7,22 @@ def home(request):
     return render(request,'home.html',context=None)
 
 class ProductsListView(ListView):
+    """
+    Display the Models Products with Categories 
+    :model:`shop.Product`, :model:`shop.Category`.
+
+    **Context**
+
+    ``products``
+        An instance of :model:`shop.Product`.
+    
+    ``categories``
+        An instance of :model:`shop.Category`.
+
+    **Template:**
+
+    :template:`shop.html`
+    """
     template_name = 'shop.html'
     model = Product
     context_object_name = 'products'

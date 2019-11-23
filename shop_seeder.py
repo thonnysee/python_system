@@ -1,3 +1,9 @@
+""" 
+shop_seeder.py
+===============
+Module to populate the models of the app shop
+
+"""
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'python_project.settings')
 import django
@@ -11,7 +17,16 @@ import requests
 
 fake = Faker()
 json = requests.get('https://picsum.photos/v2/list').json()
-def seeder(times=5):
+def products_seeder(times=5):
+    """ 
+    Populate the model Product with fake data 
+    
+    Parameters
+    ----------
+    times 
+        Number of new data sets for the model
+    
+    """
     for seed in range(times):
         name = "producto_" + str(seed)
         summary = fake.paragraph(nb_sentences=3, variable_nb_sentences=True, ext_word_list=None)
@@ -44,6 +59,6 @@ def seeder(times=5):
         product.save()
         
 if __name__ == "__main__":
-    seeder(30)
+    products_seeder(30)
         
 
