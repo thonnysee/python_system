@@ -56,6 +56,14 @@ class Product(ParanoidModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True,related_name='category')
     url = models.URLField(max_length=200,default="https://aliceasmartialarts.com/wp-content/uploads/2017/04/default-image.jpg")
     is_active = models.BooleanField(default=True) 
+    
+    @property
+    def is_active(self):
+        return self.is_active
+    
+    @property
+    def has_stock(self):
+        return self.stock > 0
         
     def save(self, *args, **kwargs):
         """Adds slug of the Product name"""
@@ -64,7 +72,7 @@ class Product(ParanoidModel):
     
     def __str__(self):
         """Return Product name"""
-        return self.name
+        return self.sku
 
 class Order(ParanoidModel):
     """Creates the purchase order/invoice of the Customer, related to :model:`auth.User`."""

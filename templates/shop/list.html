@@ -61,7 +61,7 @@
                                         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                                             <div class="category">
                                                 <div class="ht__cat__thumb">
-                                                    <a href="product-details.html">
+                                                    <a href="{% url 'product_detail' prod.slug %}">
                                                         <img src="{{prod.url}}" alt="product images">
                                                     </a>
                                                 </div>
@@ -75,7 +75,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="fr__product__inner">
-                                                    <h4><a href="product-details.html">{{prod.name}}</a></h4>
+                                                    <h4><a href="{% url 'product_detail' prod.slug %}">{{prod.name}}</a></h4>
                                                     <ul class="fr__pro__prize">
                                                         <li class="old__prize">${{prod.price|floatformat:2}}</li>
                                                         <li>${{prod.price|floatformat:2}}</li>
