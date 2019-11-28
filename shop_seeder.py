@@ -6,7 +6,7 @@ Module to populate the models of the app shop
 import os
 import django
 from random import randint
-from shop.models import Product, Category, Order, OrderItem
+from shop.models import Product, Category
 from faker import Faker
 from django.template.defaultfilters import slugify
 import requests
@@ -15,7 +15,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'python_project.settings')
 django.setup()
 fake = Faker()
 url = 'https://api-codigos-postales.herokuapp.com/v2/codigo_postal/'
-json = requests.get(url+codigo_postal).json()
+json = requests.get(url).json()
 
 
 def products_seeder(times=5):
@@ -61,6 +61,7 @@ def products_seeder(times=5):
             url=url
         )[0]
         product.save()
+
 
 if __name__ == "__main__":
     products_seeder(30)

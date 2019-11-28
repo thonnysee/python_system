@@ -6,7 +6,8 @@ from django.views.generic.detail import DetailView
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html',context=None)
+    return render(request, 'home.html', context=None)
+
 
 class ProductsListView(ListView):
     """
@@ -17,7 +18,7 @@ class ProductsListView(ListView):
 
     ``products``
         An instance of :model:`shop.Product`.
-    
+
     ``categories``
         An instance of :model:`shop.Category`.
 
@@ -28,11 +29,12 @@ class ProductsListView(ListView):
     template_name = 'shop/list.html'
     model = Product
     context_object_name = 'products'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.order_by('name')
         return context
+
 
 class ProductDetailView(DetailView):
     model = model = Product
