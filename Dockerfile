@@ -7,5 +7,5 @@ RUN apt-get -y update && apt-get -y upgrade
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /code/
-RUN adduser -D python_user
+RUN adduser python_user
 USER python_user
