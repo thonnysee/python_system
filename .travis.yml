@@ -8,5 +8,4 @@ services:
 before_script: pip install docker-compose
 
 script: 
-  - sudo chown -R $USER:$USER postgres-data/
   - docker-compose run web sh -c "python manage.py test && flake8"
