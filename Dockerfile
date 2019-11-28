@@ -7,3 +7,5 @@ RUN apt-get -y update && apt-get -y upgrade
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /code/
+RUN adduser --disabled-login dockuser
+USER dockuser
