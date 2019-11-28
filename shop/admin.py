@@ -1,9 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
 from .models import (Category, Product, OrderItem,
-                     Order, Cart, CartItem, Customer)
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+                     Order, Cart, CartItem, User)
 
 
 class PythonShopAdminSite(AdminSite):
@@ -35,5 +33,4 @@ admin_site.register(Order)
 admin_site.register(OrderItem)
 admin_site.register(Cart)
 admin_site.register(CartItem)
-admin_site.register(Customer)
-admin_site.register(User, UserAdmin)
+admin_site.register(User)

@@ -9,10 +9,51 @@ from django.db import models
 from django_paranoid.models import ParanoidModel
 import uuid
 from django.template.defaultfilters import slugify
-from django.conf import settings
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 
 
-# Create your models here.
+class UserManager(BaseUserManager):
+
+    def create_user(self, email, password=None, **extra_fields):
+        """Creates and saves new user"""
+        if not email:
+            raise ValueError('Users must have an email address')
+        user = self.model(email=self.normalize_email(email), **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+
+    def create_superuser(self, email, password):
+        """Create and saves new super user"""
+        user = self.create_user(email, password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+
+        return user
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    """Custom Model of User for Shop """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.EmailField(unique=True, max_length=254)
+    firstname = models.CharField(max_length=254)
+    lastname = models.CharField(max_length=254)
+    second_lastname = models.CharField(max_length=254)
+    birthday = models.DateField(null=True)
+    telephone = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=50)
+    lang = models.CharField(max_length=4, default='en')
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+
+
 class Category(ParanoidModel):
     """
     Stores products category, related to :model:`shop.Product`.
@@ -61,10 +102,6 @@ class Product(ParanoidModel):
     is_active = models.BooleanField(default=True)
 
     @property
-    def is_active(self):
-        return self.is_active
-
-    @property
     def has_stock(self):
         return self.stock > 0
 
@@ -84,7 +121,7 @@ class Order(ParanoidModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     order_number = models.PositiveIntegerField(null=False)
     total = models.FloatField(default=0.00)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user_id = models.ForeignKey(User,
                                 on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=50, default="pending")
 
@@ -106,7 +143,7 @@ class OrderItem(ParanoidModel):
 class Cart(ParanoidModel):
     """Stores the relation cart and customer related to :model:`auth.User`."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user_id = models.ForeignKey(User,
                                 on_delete=models.CASCADE, null=True,
                                 related_name='user')
     state = models.CharField(max_length=50, default='active')
@@ -124,11 +161,3 @@ class CartItem(ParanoidModel):
                                 related_name='cart')
     quantity = models.PositiveIntegerField(default=1)
     price = models.FloatField(default=0)
-
-
-class Customer(ParanoidModel):
-    """Stores the customer info (TBD)."""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    firstname = models.CharField(max_length=100, null=False, blank=False)
-    lastname = models.CharField(max_length=50, null=False, blank=False)
-    second_lastname = models.CharField(max_length=50, null=False, blank=False)
