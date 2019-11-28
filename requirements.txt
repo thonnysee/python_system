@@ -4,8 +4,9 @@ Faker
 django-paranoid
 requests
 docutils
-
-
+django-debug-toolbar
+djangorestframework
+flake8
 
 
 
