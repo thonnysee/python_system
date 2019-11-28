@@ -13,8 +13,11 @@ class PythonShopAdminSite(AdminSite):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Product._meta.fields if field.name != "id"
-                    or field.name != 'updated_at' or field.name != 'created_at' or field.name != 'deleted_at']
+    list_display = [field.name for field in Product._meta.fields 
+                    if field.name != "id" or field.name != 'updated_at' 
+                    or field.name != 'created_at' 
+                    or field.name != 'deleted_at'
+                    ]
     exclude = ('deleted_at',)
 
 

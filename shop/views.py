@@ -11,7 +11,7 @@ def home(request):
 
 class ProductsListView(ListView):
     """
-    Display the Models Products with Categories 
+    Display the Models Products with Categories
     :model:`shop.Product`, :model:`shop.Category`.
 
     **Context**
