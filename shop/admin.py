@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
-from .models import Category, Product, OrderItem, Order, Cart, CartItem, Customer
+from .models import (Category, Product, OrderItem,
+                     Order, Cart, CartItem, Customer)
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
@@ -13,9 +14,9 @@ class PythonShopAdminSite(AdminSite):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Product._meta.fields 
-                    if field.name != "id" or field.name != 'updated_at' 
-                    or field.name != 'created_at' 
+    list_display = [field.name for field in Product._meta.fields
+                    if field.name != "id" or field.name != 'updated_at'
+                    or field.name != 'created_at'
                     or field.name != 'deleted_at'
                     ]
     exclude = ('deleted_at',)
