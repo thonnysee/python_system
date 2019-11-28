@@ -109,4 +109,4 @@ venv.bak/
 postgres-data/
 
 #vscode Visual Code Studio
-.vscode
+.vscode/
