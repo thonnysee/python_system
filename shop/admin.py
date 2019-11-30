@@ -48,7 +48,7 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
-admin_site = PythonShopAdminSite(name='shop_admin')
+admin_site = PythonShopAdminSite()
 
 # Register your models here.
 admin_site.register(Category, CategoryAdmin)
