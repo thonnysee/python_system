@@ -3,10 +3,8 @@ psycopg2>=2.7,<3.0
 Faker
 django-paranoid
 requests
-docutils
 django-debug-toolbar
 djangorestframework
 flake8
-
-
+django-rest-auth[with_social]
 

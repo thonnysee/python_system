@@ -19,11 +19,13 @@ from shop.admin import admin_site
 from shop import views
 
 urlpatterns = [
+    path('admin/shop/doc/', include('django.contrib.admindocs.urls')),
     path('', views.home, name='home'),
     path('products/', views.ProductsListView.as_view(), name='products_list'),
     path('products/<slug:slug>/',
          views.ProductDetailView.as_view(), name='product_detail'),
-    # path('admin/', admin.site.urls),
-    path('shop_admin/', admin_site.urls),
-    path('admin/doc/', include('django.contrib.admindocs.urls'))
+    path('admin/shop/', admin_site.urls),
+    path('api/', include('api.urls')),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
 ]
