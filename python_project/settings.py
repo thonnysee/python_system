@@ -164,7 +164,7 @@ REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "api.serializers.TokenSerializer",
 }
 REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "api.serializers.CustomRegisterSerializer",
+    "REGISTER_SERIALIZER": "api.serializers.UserRegistrationSerializer",
 }
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp/email')
