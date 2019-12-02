@@ -22,7 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    exclude = ('deleted_at',)
+    exclude = ('deleted_at', 'slug')
 
 
 class UserAdmin(BaseUserAdmin):
