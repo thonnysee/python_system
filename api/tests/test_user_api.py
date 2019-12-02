@@ -58,6 +58,7 @@ class PublicUserApiTests(TestCase):
             email=payload['email']
         ).exists()
         self.assertFalse(user_exists)
+
     def test_retrieve_user_unauthorized(self):
         """Test that authentication required for users"""
         res = self.client.get(ME_URL)
@@ -82,7 +83,11 @@ class PrivateUserApiTests(TestCase):
         res = self.client.get(ME_URL)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data, {
+        result = {
+            'firstname': res.data['firstname'],
+            'email': res.data['email']
+            }
+        self.assertEqual(result, {
             'firstname': self.user.firstname,
             'email': self.user.email,
         })
