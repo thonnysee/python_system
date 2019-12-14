@@ -17,10 +17,13 @@ Including another URLconf
 from django.urls import path, include
 from shop.admin import admin_site
 from shop import views
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Shop API Endpoints')
 
 urlpatterns = [
     path('admin/shop/doc/', include('django.contrib.admindocs.urls')),
-    path('', views.home, name='home'),
+    path('', views.HomeListView.as_view(), name='home'),
     path('products/', views.ProductsListView.as_view(), name='products_list'),
     path('products/<slug:slug>/',
          views.ProductDetailView.as_view(), name='product_detail'),
@@ -28,4 +31,5 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('api/endpoints/', schema_view),
 ]

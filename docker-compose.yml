@@ -22,6 +22,15 @@ services:
     depends_on:
       - db
       - migration
+  frontend:
+    build:
+      dockerfile: frontend/Dockerfile
+      context: .
+    volumes:
+      - .:/app/
+      - /frontend/node_modules
+    ports:
+      - "3000:3000"
   migration:
     build: .
     image: app
