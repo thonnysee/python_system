@@ -4,17 +4,18 @@ shop_seeder.py
 Module to populate the models of the app shop
 """
 import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'python_project.settings')
 import django
+django.setup()
 from random import randint
 from shop.models import Product, Category
 from faker import Faker
 from django.template.defaultfilters import slugify
 import requests
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'python_project.settings')
-django.setup()
+
 fake = Faker()
-url = 'https://api-codigos-postales.herokuapp.com/v2/codigo_postal/'
+url = 'https://picsum.photos/v2/list'
 json = requests.get(url).json()
 
 
@@ -64,4 +65,4 @@ def products_seeder(times=5):
 
 
 if __name__ == "__main__":
-    products_seeder(30)
+    products_seeder(20)
