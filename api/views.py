@@ -3,6 +3,7 @@ from rest_framework import generics, authentication, permissions
 from api.serializers import UserSerializer, ProductSerializer
 from shop.models import Product
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 # from django.http import Http404
 
 
@@ -27,12 +28,22 @@ class ProductListView(generics.GenericAPIView):
     queryset = Product.objects.all
 
     def get_queryset(self):
+        print(self)
         return super().get_queryset()
 
     def get(self, request, format=None):
+        if (request.query_params and request.query_params['id']):
+            product = Product.objects.get(pk=request.query_params['id'])
+            serializer = ProductSerializer(product)
+            return Response(serializer.data)
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
-    def get_object(self, pk):
-        return Product.objects.get(pk=pk)
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+        print(queryset)
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        print(lookup_url_kwarg)
+        filter_kwargs = {self.lookup_field: self.kwargs[lookup_url_kwarg]}
+        return get_object_or_404(queryset, **filter_kwargs)
