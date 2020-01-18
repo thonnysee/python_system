@@ -1,0 +1,25 @@
+$ cat prueba 
+
+texto de prueba
+
+$ git status
+$ cat prueba 
+
+texto de prueba
+
+$ git status
+ 
+
+ls
+$ cat prueba 
+
+texto de prueba
+
+$ git status
+ 
+
+ls
+ 
+
+ls
+
